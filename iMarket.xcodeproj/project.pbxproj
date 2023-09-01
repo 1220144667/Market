@@ -36,6 +36,9 @@
 		E69879252AA06EDF0048A31D /* BouncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879242AA06EDF0048A31D /* BouncesView.swift */; };
 		E69879272AA06F0A0048A31D /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879262AA06F0A0048A31D /* TabbarController.swift */; };
 		E69879292AA071B70048A31D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879282AA071B70048A31D /* HomeViewModel.swift */; };
+		E698792B2AA177220048A31D /* Extension+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698792A2AA177220048A31D /* Extension+UIScrollView.swift */; };
+		E69879312AA17E9B0048A31D /* RefreshGradientTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */; };
+		E69879332AA1863D0048A31D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879322AA1863D0048A31D /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,10 @@
 		E69879242AA06EDF0048A31D /* BouncesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncesView.swift; sourceTree = "<group>"; };
 		E69879262AA06F0A0048A31D /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		E69879282AA071B70048A31D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E698792A2AA177220048A31D /* Extension+UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIScrollView.swift"; sourceTree = "<group>"; };
+		E698792C2AA17D7B0048A31D /* iMarket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iMarket-Bridging-Header.h"; sourceTree = "<group>"; };
+		E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshGradientTextHeader.swift; sourceTree = "<group>"; };
+		E69879322AA1863D0048A31D /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +202,7 @@
 				E69878C82A9F3A6F0048A31D /* LaunchScreen.storyboard */,
 				E69878CB2A9F3A6F0048A31D /* Info.plist */,
 				E69878C32A9F3A6D0048A31D /* iMarket.xcdatamodeld */,
+				E698792C2AA17D7B0048A31D /* iMarket-Bridging-Header.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -229,6 +237,7 @@
 				E69878F92A9F4C870048A31D /* Extension+Common.swift */,
 				E69878F22A9F42710048A31D /* Extension+UIView.swift */,
 				E69878F72A9F4A380048A31D /* Extension+UIColor.swift */,
+				E698792A2AA177220048A31D /* Extension+UIScrollView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -237,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				E69878F52A9F45240048A31D /* Foundation.swift */,
+				E69879322AA1863D0048A31D /* Common.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -348,6 +358,7 @@
 				E69879222AA06DB20048A31D /* MktViewController.swift */,
 				E69879262AA06F0A0048A31D /* TabbarController.swift */,
 				E69879242AA06EDF0048A31D /* BouncesView.swift */,
+				E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -422,6 +433,7 @@
 				TargetAttributes = {
 					E69878B62A9F3A6D0048A31D = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					E69878CF2A9F3A6F0048A31D = {
 						CreatedOnToolsVersion = 14.2;
@@ -532,6 +544,7 @@
 				E69878FA2A9F4C870048A31D /* Extension+Common.swift in Sources */,
 				E69878C52A9F3A6D0048A31D /* iMarket.xcdatamodeld in Sources */,
 				E69878F32A9F42710048A31D /* Extension+UIView.swift in Sources */,
+				E69879312AA17E9B0048A31D /* RefreshGradientTextHeader.swift in Sources */,
 				E69878FF2AA02FE10048A31D /* RequestManager.swift in Sources */,
 				E69879132AA067B60048A31D /* HomeViewController.swift in Sources */,
 				E69879252AA06EDF0048A31D /* BouncesView.swift in Sources */,
@@ -539,6 +552,7 @@
 				E69878F62A9F45240048A31D /* Foundation.swift in Sources */,
 				E69879162AA067D20048A31D /* MarketViewController.swift in Sources */,
 				E698790C2AA049A60048A31D /* Cache.swift in Sources */,
+				E69879332AA1863D0048A31D /* Common.swift in Sources */,
 				E698790A2AA049A60048A31D /* CacheManager.swift in Sources */,
 				E69879192AA067E50048A31D /* MessageViewController.swift in Sources */,
 				E69879272AA06F0A0048A31D /* TabbarController.swift in Sources */,
@@ -547,6 +561,7 @@
 				E698790B2AA049A60048A31D /* CacheExtension.swift in Sources */,
 				E69879212AA06D6D0048A31D /* MktNavigatonController.swift in Sources */,
 				E69878FD2AA0261A0048A31D /* RequestTarget.swift in Sources */,
+				E698792B2AA177220048A31D /* Extension+UIScrollView.swift in Sources */,
 				E69879032AA03C6B0048A31D /* ProgressHUD.swift in Sources */,
 				E69878F82A9F4A380048A31D /* Extension+UIColor.swift in Sources */,
 			);
@@ -724,6 +739,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -746,6 +762,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = lyz_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iMarket/Other/iMarket-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -757,6 +775,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -779,6 +798,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = lyz_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iMarket/Other/iMarket-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

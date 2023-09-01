@@ -349,3 +349,91 @@ extension UIView {
         self.centerYInSuperView()
     }
 }
+
+//MARK: --- 设置角标 ---
+private var unsafe_badge_raw: Int = 0
+
+struct BadgeConfig {
+    var backgroundColor: UIColor = .red
+    var font: UIFont = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
+    var height: CGFloat = 15
+    var cornerRadius: CGFloat = 7.5
+    var titleColor: UIColor = .white
+    var padding:(w: CGFloat, h: CGFloat) = (w: 6, h: 0)
+    var emptyWidthHeight: CGFloat = 8.0
+}
+
+extension UIView {
+    /// 设置角标
+    /// 设置红点 value设为""
+    /// 取消setBadgeValue("无")
+    /// 设置数字setBadgeValue("1")
+    func setBadgeValue(_ value: String?, _ config: BadgeConfig = BadgeConfig()) {
+        // 关联值 目的是可以手动获取到值
+        objc_setAssociatedObject(self,
+                                 &unsafe_badge_raw,
+                                 value,
+                                 .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        let badgeValue: String = value ?? ""
+        if !badgeValue.isEmpty {
+            guard isAllChinese(string: badgeValue) == false else {
+                clearBadgeValue()
+                return
+            }
+        }
+        let size = CGSize.init(width: CGFloat(MAXFLOAT) , height: CGFloat(MAXFLOAT))
+        
+        let rect = badgeValue.boundingRect(
+            with: size,
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)],
+            context: nil
+        )
+        let isEmptyBadge = badgeValue.isEmpty
+        let width = rect.size.width > config.height ? rect.size.width + config.padding.w : isEmptyBadge ? config.emptyWidthHeight : config.height
+        let badgeBtn = UIButton(
+            frame: CGRect(x: 0, y: 0, width: width, height: isEmptyBadge ? config.emptyWidthHeight : (config.height + config.padding.h))
+        )
+        badgeBtn.center = CGPoint(x: frame.size.width - 2, y: 2)
+        badgeBtn.tag = 1008611
+        badgeBtn.layer.cornerRadius = isEmptyBadge ? (config.emptyWidthHeight)/2.0 : config.cornerRadius
+        badgeBtn.layer.masksToBounds = true
+        badgeBtn.titleLabel?.font = config.font
+        badgeBtn.backgroundColor = config.backgroundColor
+        badgeBtn.setTitleColor(config.titleColor, for: .normal)
+        badgeBtn.setTitle(badgeValue, for: .normal)
+        addSubview(badgeBtn)
+        bringSubviewToFront(badgeBtn)
+    }
+    /// 获取badgeValue
+    var badgeValue: String? {
+        guard let valueStr = objc_getAssociatedObject(self, &unsafe_badge_raw) as? String,
+              let value = Int(valueStr)
+        else { return nil }
+        if value < 0 {
+            return "0"
+        } else {
+            return valueStr
+        }
+    }
+    /// 清除badgeValue
+    func clearBadgeValue() {
+        for view in subviews {
+            if (view is UIButton) && view.tag == 1008611 {
+                view.removeFromSuperview()
+            }
+        }
+    }
+
+    /// 判断是否全是汉字
+    func isAllChinese(string: String) -> Bool {
+        for character:Character in string
+        {
+            if "\(character)".lengthOfBytes(using: String.Encoding.utf8) != 3
+            {
+                return false
+            }
+        }
+        return true
+    }
+}
