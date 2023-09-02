@@ -15,5 +15,8 @@ extension Mkt {
             return !UserManager.shared.token.isEmpty
         }
         
+        static func pushLoginViewController() {
+            
+        }
     }
 }

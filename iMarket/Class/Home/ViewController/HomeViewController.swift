@@ -9,8 +9,6 @@ import UIKit
 
 class HomeViewController: MktTableViewController {
     
-    typealias Model = BannerModel
-    
     var viewModel = HomeViewModel()
     
     var banners: [BannerModel] = []
@@ -58,20 +56,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MktTableViewProtocol
 extension HomeViewController: MktTableViewProtocol {
-    func makeDataList() -> [BannerModel] {
-        return self.banners
+    
+    func didReloadData() {
+        self.tableView.beginPullDownRefresh()
+    }
+    
+    func numberInTableView() -> Int {
+        return self.banners.count
     }
     
     func makeTableView() -> UITableView {
         return self.tableView
     }
     
-    func makeCustomEmptyView() -> UIView? {
-        return EmptyContentView.show(delegate: self)
-    }
-    
-    func didActionEvent(_ type: EmptyActionType) {
-        dlog(message: type.rawValue)
+    func makeEmptyView() -> UIView? {
+        return EmptyContentView().show(delegate: self)
     }
 }
 

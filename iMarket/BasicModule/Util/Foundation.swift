@@ -187,6 +187,20 @@ extension Mkt {
     }
 }
 
+extension Mkt {
+    static func openWifi() {
+        let urlStr:String = "App-Prefs:root=WIFI"
+        let url = NSURL.init(string: urlStr)
+        if UIApplication.shared.canOpenURL(url! as URL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url! as URL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url! as URL)
+            }
+        }
+    }
+}
+
 //json解析
 extension Mkt {
     //JSON解析为模型

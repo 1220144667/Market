@@ -25,20 +25,18 @@ extension UICollectionView {
 
 public protocol MktEmptyProtocol {
     //返回一个占位的View
-    func makeCustomEmptyView() -> UIView?
+    func makeEmptyView() -> UIView?
     
     //是否支持占位View滚动
     func enableScrollToEmpryView() -> Bool
     
     //点击事件
-    func didActionEvent(_ type: EmptyActionType)
+    func didReloadData()
 }
 
 public protocol MktTableViewProtocol: MktEmptyProtocol {
-    //关联对象
-    associatedtype Model: Codable
     //数据
-    func makeDataList() -> [Model]
+    func numberInTableView() -> Int
     
     //返回一个tableview
     func makeTableView() -> UITableView
@@ -51,8 +49,8 @@ public protocol MktTableViewProtocol: MktEmptyProtocol {
 extension MktTableViewProtocol {
     
     //默认返回一个空数据
-    func makeDataList() -> [Model] {
-        return []
+    func numberInTableView() -> Int {
+        return 0
     }
     //刷新
     func reloadTableViewData() {
@@ -63,8 +61,8 @@ extension MktTableViewProtocol {
         //刷新tableView
         tableView.reloadData()
         //添加空数据背景
-        guard let emptyView = self.makeCustomEmptyView() else { return }
-        if self.makeDataList().isEmpty && !tableView.isDescendant(of: emptyView) {
+        guard let emptyView = self.makeEmptyView() else { return }
+        if self.numberInTableView() == 0 && !tableView.isDescendant(of: emptyView) {
             emptyView.frame = tableView.frame
             tableView.addSubview(emptyView)
             return
@@ -79,10 +77,8 @@ extension MktTableViewProtocol {
 }
 
 public protocol MktCollectionViewProtocol: MktEmptyProtocol {
-    //关联对象
-    associatedtype Model: Codable
     //数据
-    func makeDataList() -> [Model]
+    func numberInCollectionView() -> Int
     //返回一个collectionview
     func makeCollectionView() -> UICollectionView
     
@@ -91,16 +87,16 @@ public protocol MktCollectionViewProtocol: MktEmptyProtocol {
 }
 
 extension MktCollectionViewProtocol {
-    func makeDataList() -> [Model] {
-        return []
+    func numberInCollectionView() -> Int {
+        return 0
     }
     
     func reloadCollectionViewData() {
         let collectionView = self.makeCollectionView()
         collectionView.isScrollEnabled = self.enableScrollToEmpryView()
         collectionView.reloadData()
-        guard let emptyView = self.makeCustomEmptyView() else { return }
-        if self.makeDataList().isEmpty && !collectionView.isDescendant(of: emptyView) {
+        guard let emptyView = self.makeEmptyView() else { return }
+        if self.numberInCollectionView() == 0 && !collectionView.isDescendant(of: emptyView) {
             emptyView.frame = collectionView.frame
             collectionView.addSubview(emptyView)
             return

@@ -11,91 +11,90 @@ import SnapKit
 //占位View的一些配置
 struct EmptyConstant {
     //MARK:占位图
-    static var coverImage: String = "empty_cover"
+    var coverImage: String = "empty_cover"
     // 占位图居中的偏移量
-    static var imageOffsetY: CGFloat = 120.0
+    var imageOffsetY: CGFloat = 120.0
     // 占位图距描述间距
-    static var imageTextMargin: CGFloat = 12.0
+    var imageTextMargin: CGFloat = 12.0
     //MARK:描述
-    static var describe: String = "暂无数据~"
+    var describe: String = "暂无数据~"
     // 描述的字体颜色
-    static var describeColor: UIColor = .subTextColor
+    var describeColor: UIColor = .subTextColor
     // 描述居中偏移量
-    static var describeOffsetX: CGFloat = 0.0
+    var describeOffsetX: CGFloat = 0.0
     // 按钮距描述的间距
-    static var buttonTextMargin: CGFloat = 24.0
+    var buttonTextMargin: CGFloat = 24.0
     //按钮title
-    static var buttonName = "重新加载"
+    var buttonName = "重新加载"
     //按钮的事件
-    static var buttonType: EmptyActionType = .refresh
+    var buttonType: EmptyActionType = .refresh
     // 按钮高
-    static var buttonHeight: CGFloat = 32.0
+    var buttonHeight: CGFloat = 32.0
     //后按钮字体颜色
-    static var buttonTextColor: UIColor = .themColor
+    var buttonTextColor: UIColor = .themColor
 }
 
 extension EmptyContentView {
     //不带按钮的类型
-    static func show(delegate: MktEmptyProtocol) -> EmptyContentView {
+    func show(delegate: MktEmptyProtocol, constant: EmptyConstant = EmptyConstant(), isCustom: Bool = false) -> EmptyContentView {
         self.delegate = delegate
+        self.constant = constant
         if RequestManager.isNetworkConnect == false {
-            EmptyConstant.coverImage = "empty_cover"
-            EmptyConstant.describe = "数据加载失败，点击重试~"
-            EmptyConstant.buttonName = "检查网络"
-            EmptyConstant.buttonType = .checkNetwork
+            self.constant.coverImage = "empty_cover"
+            self.constant.describe = "数据加载失败，点击重试~"
+            self.constant.buttonName = "检查网络"
+            self.constant.buttonType = .checkNetwork
         } else if !Mkt.APP.isLogin {
-            EmptyConstant.coverImage =  "empty_cover"
-            EmptyConstant.describe = "未登录，点击去登录~"
-            EmptyConstant.buttonName = "去登录"
-            EmptyConstant.buttonType = .goLogin
+            self.constant.coverImage =  "empty_cover"
+            self.constant.describe = "未登录，点击去登录~"
+            self.constant.buttonName = "去登录"
+            self.constant.buttonType = .goLogin
+        } else if isCustom {
+            self.constant.coverImage =  "empty_cover"
+            self.constant.describe = "自定义描述~"
+            self.constant.buttonName = "自定义按钮"
+            self.constant.buttonType = .refresh
         } else {
-            EmptyConstant.coverImage =  "empty_cover"
-            EmptyConstant.describe = "暂无数据~"
-            EmptyConstant.buttonName = "重新获取"
-            EmptyConstant.buttonType = .refresh
+            self.constant.coverImage =  "empty_cover"
+            self.constant.describe = "暂无数据~"
+            self.constant.buttonName = "重新获取"
+            self.constant.buttonType = .refresh
         }
-        return EmptyContentView()
+        return EmptyContentView().commonInit()
     }
 }
 
 class EmptyContentView: UIView {
+    
+    private var constant = EmptyConstant()
     //代理
-    static var delegate: MktEmptyProtocol?
-    //初始化方法
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    private var delegate: MktEmptyProtocol?
+    
+    private func commonInit() -> EmptyContentView {
         self.addSubview(self.coverImg)
         self.coverImg.snp.makeConstraints { make in
-            make.centerY.equalTo(self).offset(-EmptyConstant.imageOffsetY)
+            make.centerY.equalTo(self).offset(-self.constant.imageOffsetY)
             make.centerX.equalTo(self)
         }
         self.addSubview(self.descLabel)
         self.descLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.coverImg.snp.bottom).offset(EmptyConstant.imageTextMargin)
-            make.left.equalTo(16 + EmptyConstant.describeOffsetX)
+            make.top.equalTo(self.coverImg.snp.bottom).offset(self.constant.imageTextMargin)
+            make.left.equalTo(16 + self.constant.describeOffsetX)
             make.right.equalTo(-16)
         }
         self.addSubview(self.actionButton)
         self.actionButton.snp.makeConstraints { make in
-            make.top.equalTo(self.descLabel.snp.bottom).offset(EmptyConstant.buttonTextMargin)
+            make.top.equalTo(self.descLabel.snp.bottom).offset(self.constant.buttonTextMargin)
             make.centerX.equalTo(self)
             make.width.equalTo(80)
-            make.height.equalTo(EmptyConstant.buttonHeight)
+            make.height.equalTo(self.constant.buttonHeight)
         }
-        //背景添加点击事件
-        self.clickHandle { [weak self] sender in
-            guard let self = self else { return }
-            self.clickBackgroundAction()
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return self
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        let button_text = EmptyConstant.buttonName
+        let button_text = self.constant.buttonName
         var width = Mkt.labelWithWidth(text: button_text, font: .systemFont(ofSize: 14)) + 32
         if width > Mkt.screenWidth - 32 {
             width = Mkt.screenWidth - 32
@@ -105,16 +104,28 @@ class EmptyContentView: UIView {
         }
     }
     
+    //按钮点击事件
+    @objc func clickButtonAction() {
+        switch self.constant.buttonType {
+        case .goLogin:
+            Mkt.APP.pushLoginViewController()
+        case .checkNetwork:
+            Mkt.openWifi()
+        case .refresh:
+            self.delegate?.didReloadData()
+        }
+    }
+    
     //背景图
     lazy var coverImg: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: EmptyConstant.coverImage)
+        imageView.image = UIImage(named: self.constant.coverImage)
         return imageView
     }()
     //描述
     lazy var descLabel: UILabel = {
         let descLabel = UILabel()
-        descLabel.text = EmptyConstant.describe
+        descLabel.text = self.constant.describe
         descLabel.textColor = .subTextColor
         descLabel.textAlignment = .center
         descLabel.font = .systemFont(ofSize: 14)
@@ -125,40 +136,14 @@ class EmptyContentView: UIView {
     //按钮
     lazy var actionButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle(EmptyConstant.buttonName, for: .normal)
-        button.setTitleColor(EmptyConstant.buttonTextColor, for: .normal)
+        button.setTitle(self.constant.buttonName, for: .normal)
+        button.setTitleColor(self.constant.buttonTextColor, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
-        button.layer.borderColor = EmptyConstant.buttonTextColor.cgColor
+        button.layer.borderColor = self.constant.buttonTextColor.cgColor
         button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = EmptyConstant.buttonHeight/2.0
+        button.layer.cornerRadius = self.constant.buttonHeight/2.0
         button.layer.masksToBounds = false
-        button.addTarget(self, action: #selector(clickButtonAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(clickButtonAction), for: .touchUpInside)
         return button
     }()
-}
-
-//MARK：-点击事件-
-extension EmptyContentView {
-    //背景点击事件
-    func clickBackgroundAction() {
-        EmptyContentView.delegate?.didActionEvent(.refresh)
-    }
-    //按钮点击事件
-    @objc func clickButtonAction(_ sender: UIButton) {
-        let type = EmptyActionType(rawValue: sender.tag) ?? .refresh
-        EmptyContentView.delegate?.didActionEvent(type)
-    }
-    
-    /// 前往Wi-Fi设置页面
-    func gotoSettings() {
-        let urlStr:String = "App-Prefs:root=WIFI"
-        let url = NSURL.init(string: urlStr)
-        if UIApplication.shared.canOpenURL(url! as URL) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url! as URL, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url! as URL)
-            }
-        }
-    }
 }
