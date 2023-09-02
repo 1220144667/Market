@@ -49,7 +49,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MktTableViewProtocol
 extension HomeViewController: MktTableViewProtocol {
-    func makeDataList() -> [Model] {
+    func makeDataList() -> [BannerModel] {
         return self.banners
     }
     
