@@ -34,7 +34,7 @@ struct HomeViewModel {
         param["userId"] = "218970"
         Mkt.requestToGet(path: path, query: param, type: [BannerModel].self) { response in
             guard let list = response.retData else { return }
-            completion([list])
+            completion(list)
         } failure: { error in
             dlog(message: error)
         }
