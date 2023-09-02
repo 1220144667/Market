@@ -25,4 +25,6 @@ class HomeViewController: MktViewController {
             self.banners = list
         }
     }
+    
+    
 }

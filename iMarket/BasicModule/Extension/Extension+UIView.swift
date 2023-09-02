@@ -101,6 +101,12 @@ extension UIView {
 }
 
 extension UIView {
+    @objc class var reuseIdentifier: String {
+        NSStringFromClass(Self.self) + #function
+    }
+}
+
+extension UIView {
     func setGradientColor(colors: [CGColor]) -> CAGradientLayer {
         // 渐变颜色
         let gradientLayer = CAGradientLayer()

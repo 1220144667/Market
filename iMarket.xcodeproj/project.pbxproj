@@ -36,9 +36,16 @@
 		E69879252AA06EDF0048A31D /* BouncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879242AA06EDF0048A31D /* BouncesView.swift */; };
 		E69879272AA06F0A0048A31D /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879262AA06F0A0048A31D /* TabbarController.swift */; };
 		E69879292AA071B70048A31D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879282AA071B70048A31D /* HomeViewModel.swift */; };
-		E698792B2AA177220048A31D /* Extension+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698792A2AA177220048A31D /* Extension+UIScrollView.swift */; };
 		E69879312AA17E9B0048A31D /* RefreshGradientTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */; };
 		E69879332AA1863D0048A31D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879322AA1863D0048A31D /* Common.swift */; };
+		E69879382AA1B1750048A31D /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879372AA1B1750048A31D /* EmptyContentView.swift */; };
+		E698793A2AA1B1BA0048A31D /* MktTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879392AA1B1BA0048A31D /* MktTableViewProtocol.swift */; };
+		E698793D2AA1B7B60048A31D /* Extension+APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698793C2AA1B7B60048A31D /* Extension+APP.swift */; };
+		E69879402AA1B8420048A31D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698793F2AA1B8420048A31D /* UserManager.swift */; };
+		E69879462AA1BB6F0048A31D /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879452AA1BB6F0048A31D /* RefreshScrollView.swift */; };
+		E698794B2AA3072F0048A31D /* MktTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698794A2AA3072F0048A31D /* MktTableViewController.swift */; };
+		E698794D2AA307400048A31D /* MktCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698794C2AA307400048A31D /* MktCollectionViewController.swift */; };
+		E698794F2AA308190048A31D /* CategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698794E2AA308190048A31D /* CategoryTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,10 +101,17 @@
 		E69879242AA06EDF0048A31D /* BouncesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncesView.swift; sourceTree = "<group>"; };
 		E69879262AA06F0A0048A31D /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		E69879282AA071B70048A31D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		E698792A2AA177220048A31D /* Extension+UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIScrollView.swift"; sourceTree = "<group>"; };
 		E698792C2AA17D7B0048A31D /* iMarket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iMarket-Bridging-Header.h"; sourceTree = "<group>"; };
 		E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshGradientTextHeader.swift; sourceTree = "<group>"; };
 		E69879322AA1863D0048A31D /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		E69879372AA1B1750048A31D /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyContentView.swift; sourceTree = "<group>"; };
+		E69879392AA1B1BA0048A31D /* MktTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MktTableViewProtocol.swift; sourceTree = "<group>"; };
+		E698793C2AA1B7B60048A31D /* Extension+APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+APP.swift"; sourceTree = "<group>"; };
+		E698793F2AA1B8420048A31D /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		E69879452AA1BB6F0048A31D /* RefreshScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
+		E698794A2AA3072F0048A31D /* MktTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MktTableViewController.swift; sourceTree = "<group>"; };
+		E698794C2AA307400048A31D /* MktCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MktCollectionViewController.swift; sourceTree = "<group>"; };
+		E698794E2AA308190048A31D /* CategoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				E69878BA2A9F3A6D0048A31D /* AppDelegate.swift */,
+				E698793C2AA1B7B60048A31D /* Extension+APP.swift */,
 				E69878BE2A9F3A6D0048A31D /* ViewController.swift */,
 				E69878C02A9F3A6D0048A31D /* Main.storyboard */,
 				E69878C62A9F3A6F0048A31D /* Assets.xcassets */,
@@ -221,6 +236,7 @@
 		E69878F02A9F411D0048A31D /* BasicModule */ = {
 			isa = PBXGroup;
 			children = (
+				E69879362AA1B14D0048A31D /* ListView */,
 				E698791F2AA06D490048A31D /* Base */,
 				E69879002AA03C500048A31D /* ThirdParty */,
 				E69879062AA049A50048A31D /* CacheKit */,
@@ -237,7 +253,6 @@
 				E69878F92A9F4C870048A31D /* Extension+Common.swift */,
 				E69878F22A9F42710048A31D /* Extension+UIView.swift */,
 				E69878F72A9F4A380048A31D /* Extension+UIColor.swift */,
-				E698792A2AA177220048A31D /* Extension+UIScrollView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -298,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				E69879122AA067B60048A31D /* HomeViewController.swift */,
+				E698794E2AA308190048A31D /* CategoryTableView.swift */,
 				E69879282AA071B70048A31D /* HomeViewModel.swift */,
 			);
 			path = ViewController;
@@ -322,6 +338,7 @@
 		E69879112AA067680048A31D /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				E698793E2AA1B8350048A31D /* Model */,
 				E698791B2AA067F10048A31D /* ViewController */,
 			);
 			path = Mine;
@@ -356,11 +373,31 @@
 			children = (
 				E69879202AA06D6D0048A31D /* MktNavigatonController.swift */,
 				E69879222AA06DB20048A31D /* MktViewController.swift */,
+				E698794A2AA3072F0048A31D /* MktTableViewController.swift */,
+				E698794C2AA307400048A31D /* MktCollectionViewController.swift */,
 				E69879262AA06F0A0048A31D /* TabbarController.swift */,
 				E69879242AA06EDF0048A31D /* BouncesView.swift */,
-				E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		E69879362AA1B14D0048A31D /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				E69879392AA1B1BA0048A31D /* MktTableViewProtocol.swift */,
+				E69879372AA1B1750048A31D /* EmptyContentView.swift */,
+				E69879452AA1BB6F0048A31D /* RefreshScrollView.swift */,
+				E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		E698793E2AA1B8350048A31D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E698793F2AA1B8420048A31D /* UserManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,21 +584,28 @@
 				E69879312AA17E9B0048A31D /* RefreshGradientTextHeader.swift in Sources */,
 				E69878FF2AA02FE10048A31D /* RequestManager.swift in Sources */,
 				E69879132AA067B60048A31D /* HomeViewController.swift in Sources */,
+				E698794B2AA3072F0048A31D /* MktTableViewController.swift in Sources */,
 				E69879252AA06EDF0048A31D /* BouncesView.swift in Sources */,
 				E69879232AA06DB20048A31D /* MktViewController.swift in Sources */,
+				E69879462AA1BB6F0048A31D /* RefreshScrollView.swift in Sources */,
+				E69879382AA1B1750048A31D /* EmptyContentView.swift in Sources */,
 				E69878F62A9F45240048A31D /* Foundation.swift in Sources */,
 				E69879162AA067D20048A31D /* MarketViewController.swift in Sources */,
+				E698794D2AA307400048A31D /* MktCollectionViewController.swift in Sources */,
 				E698790C2AA049A60048A31D /* Cache.swift in Sources */,
 				E69879332AA1863D0048A31D /* Common.swift in Sources */,
 				E698790A2AA049A60048A31D /* CacheManager.swift in Sources */,
+				E698794F2AA308190048A31D /* CategoryTableView.swift in Sources */,
 				E69879192AA067E50048A31D /* MessageViewController.swift in Sources */,
 				E69879272AA06F0A0048A31D /* TabbarController.swift in Sources */,
+				E69879402AA1B8420048A31D /* UserManager.swift in Sources */,
 				E69878BB2A9F3A6D0048A31D /* AppDelegate.swift in Sources */,
 				E698791D2AA067FD0048A31D /* MineViewController.swift in Sources */,
+				E698793D2AA1B7B60048A31D /* Extension+APP.swift in Sources */,
 				E698790B2AA049A60048A31D /* CacheExtension.swift in Sources */,
 				E69879212AA06D6D0048A31D /* MktNavigatonController.swift in Sources */,
 				E69878FD2AA0261A0048A31D /* RequestTarget.swift in Sources */,
-				E698792B2AA177220048A31D /* Extension+UIScrollView.swift in Sources */,
+				E698793A2AA1B1BA0048A31D /* MktTableViewProtocol.swift in Sources */,
 				E69879032AA03C6B0048A31D /* ProgressHUD.swift in Sources */,
 				E69878F82A9F4A380048A31D /* Extension+UIColor.swift in Sources */,
 			);

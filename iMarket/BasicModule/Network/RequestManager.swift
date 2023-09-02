@@ -44,7 +44,7 @@ struct RequestManager {
     
     /// 定义域名
     enum Host: String {
-        case debugIP   = "hamkke.dev.muke.zone"
+        case debugIP   = "mkt.ertix.ij0iln.top"
         case release   = "bac.new.hamkke.top"
     }
     
@@ -114,6 +114,17 @@ extension RequestManager {
         header[Constant.HeaderFieldKey.versionNumber] = versionNumber
         header[Constant.HeaderFieldKey.systemVersion] = systemVersion
         return header
+    }
+    
+    func parameters() -> [String: Any] {
+        //构造携带的数据
+        var param: [String: String] = [:]
+        param["access_token"] = "afe6fa65-f8c8-473f-88c6-805bf726e973"
+        param["apiVersion"] = "2"
+        param["clientVersion"] = "1.1.6"
+        param["softType"] = "timi_ios"
+        param["styleType"] = "1"
+        return param
     }
 }
 
