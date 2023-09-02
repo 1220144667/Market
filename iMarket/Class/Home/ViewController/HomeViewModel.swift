@@ -32,11 +32,11 @@ struct HomeViewModel {
         param["size"] = "10"
         param["softType"] = "lyz_ios"
         param["userId"] = "218970"
-        Mkt.requestToGet(path: path, query: param, type: [BannerModel].self) { response in
+        Mkt.requestToGet(path: path, query: param, type: [BannerModel].self, showHUD: false) { response in
             guard let list = response.retData else { return }
             completion(list)
         } failure: { error in
-            dlog(message: error)
+            completion([])
         }
     }
 }

@@ -28,10 +28,19 @@ class HomeViewController: MktTableViewController {
         self.tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(0)
         }
+        self.tableView.addPullDownRefresh { [weak self] in
+            guard let self = self else { return }
+            self.getDataList()
+        }
+        self.tableView.beginPullDownRefresh()
+    }
+    
+    func getDataList() {
         self.viewModel.getBannerList { [weak self] list in
             guard let self = self else { return }
             self.banners = list
             self.tableView.mkt_reloadData(self)
+            self.tableView.endPullDownRefresh()
         }
     }
 }

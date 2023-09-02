@@ -36,7 +36,6 @@
 		E69879252AA06EDF0048A31D /* BouncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879242AA06EDF0048A31D /* BouncesView.swift */; };
 		E69879272AA06F0A0048A31D /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879262AA06F0A0048A31D /* TabbarController.swift */; };
 		E69879292AA071B70048A31D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879282AA071B70048A31D /* HomeViewModel.swift */; };
-		E69879312AA17E9B0048A31D /* RefreshGradientTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */; };
 		E69879332AA1863D0048A31D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879322AA1863D0048A31D /* Common.swift */; };
 		E69879382AA1B1750048A31D /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879372AA1B1750048A31D /* EmptyContentView.swift */; };
 		E698793A2AA1B1BA0048A31D /* MktTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879392AA1B1BA0048A31D /* MktTableViewProtocol.swift */; };
@@ -101,7 +100,6 @@
 		E69879262AA06F0A0048A31D /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		E69879282AA071B70048A31D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E698792C2AA17D7B0048A31D /* iMarket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iMarket-Bridging-Header.h"; sourceTree = "<group>"; };
-		E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshGradientTextHeader.swift; sourceTree = "<group>"; };
 		E69879322AA1863D0048A31D /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		E69879372AA1B1750048A31D /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyContentView.swift; sourceTree = "<group>"; };
 		E69879392AA1B1BA0048A31D /* MktTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MktTableViewProtocol.swift; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 				E69879392AA1B1BA0048A31D /* MktTableViewProtocol.swift */,
 				E69879372AA1B1750048A31D /* EmptyContentView.swift */,
 				E69879452AA1BB6F0048A31D /* RefreshScrollView.swift */,
-				E69879302AA17E9B0048A31D /* RefreshGradientTextHeader.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -578,7 +575,6 @@
 				E69878FA2A9F4C870048A31D /* Extension+Common.swift in Sources */,
 				E69878C52A9F3A6D0048A31D /* iMarket.xcdatamodeld in Sources */,
 				E69878F32A9F42710048A31D /* Extension+UIView.swift in Sources */,
-				E69879312AA17E9B0048A31D /* RefreshGradientTextHeader.swift in Sources */,
 				E69878FF2AA02FE10048A31D /* RequestManager.swift in Sources */,
 				E69879132AA067B60048A31D /* HomeViewController.swift in Sources */,
 				E698794B2AA3072F0048A31D /* MktTableViewController.swift in Sources */,

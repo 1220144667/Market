@@ -7,27 +7,29 @@
 
 import Foundation
 
+//下拉刷新上拉加载更多
 extension UIScrollView {
-    
-    /// 添加下拉刷新
-    /// - Parameter refreshHandler: 回调
-    func addPullDownRefresh(_ refreshHandler: @escaping MktParamlessClosure) {
+    func addPullDownRefresh(_ refreshHandler: @escaping () -> Void) {
         if self.mj_header == nil {
-            let header = RefreshGradientTextHeader.init(refreshingBlock: refreshHandler)
+            let header = MJRefreshNormalHeader.init(refreshingBlock: refreshHandler)
+            header.lastUpdatedTimeLabel?.isHidden = false
+            header.stateLabel?.font = UIFont.systemFont(ofSize: 14)
+            header.stateLabel?.textColor = .textColor
+            header.loadingView?.color = .textColor
             self.mj_header = header
         } else {
             self.mj_header?.refreshingBlock = refreshHandler
         }
     }
     
-    /// 添加上拉加载更多
-    /// - Parameter moreHandler: 回调
-    func addPullUpMore(_ moreHandler: @escaping MktParamlessClosure) {
+    func addPullUpMore(_ moreHandler: @escaping () -> Void) {
         if self.mj_footer == nil {
             let footer = MJRefreshAutoNormalFooter.init(refreshingBlock: moreHandler)
-            footer.stateLabel?.font = .systemFont(ofSize: 14)
+            footer.stateLabel?.font = UIFont.systemFont(ofSize: 14)
             footer.setTitle("", for: .idle)
-            footer.setTitle("", for: .noMoreData)
+            footer.setTitle("- 已经到底了 -", for: .noMoreData)
+            footer.stateLabel?.textColor = .textColor
+            footer.loadingView?.color = .textColor
             footer.isRefreshingTitleHidden = true
             self.mj_footer = footer
         } else {
@@ -35,19 +37,16 @@ extension UIScrollView {
         }
     }
     
-    //主动开始加载
     func beginPullDownRefresh() {
         self.mj_header?.beginRefreshing()
     }
     
-    //下拉刷新完成
     func endPullDownRefresh() {
         if self.mj_header?.isRefreshing ?? false {
             self.mj_header?.endRefreshing()
         }
     }
     
-    //上拉加载结束
     func endPullUpMore(_ hasMore: Bool) {
         if self.mj_footer?.isRefreshing ?? false {
             if hasMore {
