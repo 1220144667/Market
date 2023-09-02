@@ -14,7 +14,7 @@ enum HomeRequestPath: RequestPath {
     var path: String {
         switch self {
         case .bannerList:
-            return "jj_ss"
+            return "/mkt/app/info/scene/list"
         }
     }
 }
@@ -22,16 +22,10 @@ enum HomeRequestPath: RequestPath {
 struct HomeViewModel {
     
     func getBannerList(_ completion: @escaping (_ list: [BannerModel]) -> Void) {
-        let path = HomeRequestPath.bannerList
-        Mkt.requestToGet(path: path, type: [BannerModel].self) { response in
-            guard let list = response.data else { return }
-            completion(list)
-        } failure: { error in
-            dlog(message: error)
-        }
+        
     }
 }
 
 struct BannerModel: Codable {
-    let url: String
+    let appCode: String?
 }

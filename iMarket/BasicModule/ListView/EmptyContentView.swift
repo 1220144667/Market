@@ -11,7 +11,7 @@ import SnapKit
 //占位View的一些配置
 struct EmptyConstant {
     //MARK:占位图
-    static var coverImage: String = "normal_nodata"
+    static var coverImage: String = "empty_cover"
     // 占位图居中的偏移量
     static var imageOffsetY: CGFloat = 120.0
     // 占位图距描述间距
@@ -26,15 +26,41 @@ struct EmptyConstant {
     static var buttonTextMargin: CGFloat = 24.0
     //按钮title
     static var buttonName = "重新加载"
+    //按钮的事件
+    static var buttonType: EmptyActionType = .refresh
     // 按钮高
     static var buttonHeight: CGFloat = 32.0
     //后按钮字体颜色
     static var buttonTextColor: UIColor = .themColor
 }
 
+extension EmptyContentView {
+    //不带按钮的类型
+    static func show(delegate: MktEmptyProtocol) -> EmptyContentView {
+        self.delegate = delegate
+        if RequestManager.isNetworkConnect == false {
+            EmptyConstant.coverImage = "empty_cover"
+            EmptyConstant.describe = "数据加载失败，点击重试~"
+            EmptyConstant.buttonName = "检查网络"
+            EmptyConstant.buttonType = .checkNetwork
+        } else if !Mkt.APP.isLogin {
+            EmptyConstant.coverImage =  "empty_cover"
+            EmptyConstant.describe = "未登录，点击去登录~"
+            EmptyConstant.buttonName = "去登录"
+            EmptyConstant.buttonType = .goLogin
+        } else {
+            EmptyConstant.coverImage =  "empty_cover"
+            EmptyConstant.describe = "暂无数据~"
+            EmptyConstant.buttonName = "重新获取"
+            EmptyConstant.buttonType = .refresh
+        }
+        return EmptyContentView()
+    }
+}
+
 class EmptyContentView: UIView {
     //代理
-    var delegate: MktEmptyProtocol?
+    static var delegate: MktEmptyProtocol?
     //初始化方法
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,8 +79,8 @@ class EmptyContentView: UIView {
         self.actionButton.snp.makeConstraints { make in
             make.top.equalTo(self.descLabel.snp.bottom).offset(EmptyConstant.buttonTextMargin)
             make.centerX.equalTo(self)
-            make.width.equalTo(120)
-            make.right.equalTo(EmptyConstant.buttonHeight)
+            make.width.equalTo(80)
+            make.height.equalTo(EmptyConstant.buttonHeight)
         }
         //背景添加点击事件
         self.clickHandle { [weak self] sender in
@@ -98,7 +124,7 @@ class EmptyContentView: UIView {
     }()
     //按钮
     lazy var actionButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.setTitle(EmptyConstant.buttonName, for: .normal)
         button.setTitleColor(EmptyConstant.buttonTextColor, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
@@ -115,16 +141,12 @@ class EmptyContentView: UIView {
 extension EmptyContentView {
     //背景点击事件
     func clickBackgroundAction() {
-        if (self.delegate != nil) {
-            self.delegate?.didActionEvent(.refresh)
-        }
+        EmptyContentView.delegate?.didActionEvent(.refresh)
     }
     //按钮点击事件
     @objc func clickButtonAction(_ sender: UIButton) {
         let type = EmptyActionType(rawValue: sender.tag) ?? .refresh
-        if (self.delegate != nil) {
-            self.delegate?.didActionEvent(type)
-        }
+        EmptyContentView.delegate?.didActionEvent(type)
     }
     
     /// 前往Wi-Fi设置页面
@@ -138,38 +160,5 @@ extension EmptyContentView {
                 UIApplication.shared.openURL(url! as URL)
             }
         }
-    }
-}
-
-extension EmptyContentView {
-    //不带按钮的类型
-    func show(delegate: MktEmptyProtocol) {
-        self.delegate = delegate
-        if RequestManager.isNetworkConnect == false {
-            EmptyConstant.coverImage = "normal_nodata"
-            EmptyConstant.describe = "数据加载失败，点击重试~"
-            EmptyConstant.buttonName = "检查网络"
-            coverImg.image = UIImage(named: EmptyConstant.coverImage)
-            descLabel.text = EmptyConstant.describe
-            actionButton.setTitle(EmptyConstant.buttonName, for: .normal)
-            actionButton.tag = 1
-        } else if !Mkt.APP.isLogin {
-            EmptyConstant.coverImage =  "normal_nodata"
-            EmptyConstant.describe = "未登录，点击去登录~"
-            EmptyConstant.buttonName = "去登录"
-            actionButton.tag = 0
-            coverImg.image = UIImage(named: EmptyConstant.coverImage)
-            descLabel.text = EmptyConstant.describe
-            actionButton.setTitle(EmptyConstant.buttonName, for: .normal)
-        } else {
-            EmptyConstant.coverImage =  "normal_nodata"
-            EmptyConstant.describe = "暂无数据~"
-            EmptyConstant.buttonName = "重新获取"
-            actionButton.tag = 2
-            coverImg.image = UIImage(named: EmptyConstant.coverImage)
-            descLabel.text = EmptyConstant.describe
-            actionButton.setTitle(EmptyConstant.buttonName, for: .normal)
-        }
-        self.setNeedsDisplay()
     }
 }

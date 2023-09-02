@@ -11,12 +11,12 @@ import Alamofire
 import Moya
 
 //网络请求Code
-enum ResponseCode: Int {
-    case success = 200            //成功
-    case vitoken = 401            //token失效
-    case dataRequestFail = -888   //客户端自定义接口返回错误code
-    case noneNetwork = -999       //无网络code
-    case dataParseFail = -666     //数据解析失败code
+enum ResponseCode: String {
+    case success = "0000"            //成功
+    case vitoken = "4001"            //token失效
+    case dataRequestFail = "-888"   //客户端自定义接口返回错误code
+    case noneNetwork = "-999"       //无网络code
+    case dataParseFail = "-666"     //数据解析失败code
 }
 
 struct RequestManager {
@@ -170,7 +170,7 @@ extension RequestManager {
                 Mkt.makeToast("网络连接失败，请检查网络")
             }
             let domain = Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain
-            let error = NSError.init(domain: domain, code: ResponseCode.noneNetwork.rawValue)
+            let error = NSError.init(domain: domain, code: -999)
             failure?(error)
             return nil
         }
@@ -211,8 +211,8 @@ extension RequestManager {
                              failureHandler: ErrorCallback?) -> Cancellable? {
         let task = self.request(request, showHUD: isShow) { data in
             if let model = Mkt.jsonToModel(Response<T>.self, data) {
-                let code = model.code
-                let message = model.msg
+                let code = model.retCode
+                let message = model.retMsg
                 if let error = self.filterResponseCode(code, message: message, showHUD: isShow) {
                     failureHandler?(error)
                 } else {
@@ -223,7 +223,7 @@ extension RequestManager {
                     Mkt.makeToast("数据解析失败")
                 }
                 let domain = Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain
-                let error = NSError.init(domain: domain, code: ResponseCode.dataParseFail.rawValue)
+                let error = NSError.init(domain: domain, code: -666)
                 failureHandler?(error)
             }
         } failure: { error in
@@ -254,7 +254,7 @@ extension RequestManager {
                     #endif
                 }
                 let domain = Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain
-                let error = NSError.init(domain: domain, code: ResponseCode.dataParseFail.rawValue)
+                let error = NSError.init(domain: domain, code: -666)
                 failure?(error)
             }
         }, failure: failure)
@@ -281,7 +281,7 @@ extension RequestManager {
                     #endif
                 }
                 let domain = Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain
-                let error = NSError.init(domain: domain, code: ResponseCode.dataParseFail.rawValue)
+                let error = NSError.init(domain: domain, code: -666)
                 failure?(error)
             }
         }, failure: failure)
@@ -295,13 +295,13 @@ extension RequestManager {
     ///   - message: 错误提示
     ///   - isShow: 是否展示Toast
     /// - Returns: 返回错误信息
-    private func filterResponseCode(_ code: Int, message: String, showHUD isShow: Bool = true) -> NSError? {
+    private func filterResponseCode(_ code: String, message: String, showHUD isShow: Bool = true) -> NSError? {
         var error: NSError?
         switch code {
         case ResponseCode.success.rawValue://成功
             break
         case ResponseCode.vitoken.rawValue://token已过期
-            error = NSError.init(domain: Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain, code: ResponseCode.vitoken.rawValue)
+            error = NSError.init(domain: Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain, code: -4001)
             let title = "提醒"
             let message = "授权已过期，请重新登录"
             let alert = AlertController(title: title, message: message)
@@ -321,7 +321,7 @@ extension RequestManager {
                 }
             }
             let domain = Bundle.main.bundleIdentifier ?? Constant.requestErrorDomain
-            error = NSError.init(domain: domain, code: ResponseCode.dataRequestFail.rawValue)
+            error = NSError.init(domain: domain, code: -888)
         }
         return error
     }

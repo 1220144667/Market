@@ -26,9 +26,9 @@ typealias StringCallback = ((_ response: String) -> Void)
 
 //请求结果
 struct Response<T: Codable>: Codable {
-    var code: Int = 0
-    var msg: String = ""
-    var data: T?
+    var retCode: String = "0000"
+    var retMsg: String = ""
+    var retData: T?
 }
 
 //空数据

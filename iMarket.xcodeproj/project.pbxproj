@@ -45,7 +45,6 @@
 		E69879462AA1BB6F0048A31D /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69879452AA1BB6F0048A31D /* RefreshScrollView.swift */; };
 		E698794B2AA3072F0048A31D /* MktTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698794A2AA3072F0048A31D /* MktTableViewController.swift */; };
 		E698794D2AA307400048A31D /* MktCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698794C2AA307400048A31D /* MktCollectionViewController.swift */; };
-		E698794F2AA308190048A31D /* CategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E698794E2AA308190048A31D /* CategoryTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,7 +110,6 @@
 		E69879452AA1BB6F0048A31D /* RefreshScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
 		E698794A2AA3072F0048A31D /* MktTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MktTableViewController.swift; sourceTree = "<group>"; };
 		E698794C2AA307400048A31D /* MktCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MktCollectionViewController.swift; sourceTree = "<group>"; };
-		E698794E2AA308190048A31D /* CategoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				E69879122AA067B60048A31D /* HomeViewController.swift */,
-				E698794E2AA308190048A31D /* CategoryTableView.swift */,
 				E69879282AA071B70048A31D /* HomeViewModel.swift */,
 			);
 			path = ViewController;
@@ -595,7 +592,6 @@
 				E698790C2AA049A60048A31D /* Cache.swift in Sources */,
 				E69879332AA1863D0048A31D /* Common.swift in Sources */,
 				E698790A2AA049A60048A31D /* CacheManager.swift in Sources */,
-				E698794F2AA308190048A31D /* CategoryTableView.swift in Sources */,
 				E69879192AA067E50048A31D /* MessageViewController.swift in Sources */,
 				E69879272AA06F0A0048A31D /* TabbarController.swift in Sources */,
 				E69879402AA1B8420048A31D /* UserManager.swift in Sources */,
